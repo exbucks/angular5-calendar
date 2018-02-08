@@ -1,0 +1,46 @@
+<div class="month" #monthView fxLayout="column">
+  <div class="day-names" fxLayout="row" fxLayout="center center">
+    <div fxFlex *ngFor="let day of options.dayNamesShort">{{day}}</div>
+  </div>
+  <div class="days" fxLayout="column">
+    <div 
+      class="day-row"
+      [style.minHeight]="cellHeight + 'px'"
+      [style.height]="rowData[i].height * 22 + 25 + 'px'"
+      *ngFor="let days of monthDays; let i = index"
+      fxLayout="row">
+      <div class="row-content">
+        <div 
+          class="event"
+          [style.width]="14.28 * event.data.duration + '%'"
+          [style.left]="14.28 * event.data.left + '%'"
+          [style.top]="22 * event.data.top + 'px'"
+          *ngFor="let event of rowData[i].content">
+          <sc-calendar-event-chip
+            [data]="event"
+            (eventShown)="eventRender($event)"
+            [contextMenu]="contextMenu"
+            (onMenuShown)="onMenuShown($event)"
+            [hoverPopup]="hoverPopup"
+            (onPopupShown)="onPopupShown($event)"></sc-calendar-event-chip>
+        </div>
+      </div>
+      <div class="day"
+        [dayCell]="day.date"
+        (dayRender)="dayRender($event)"
+        [class.today]="isToday(day.date)"
+        *ngFor="let day of days"
+        fxFlex>
+        <span class="date-badge" [class.inactive]="!day.active">{{day.date.date()}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<popover-content #hoverPopup placement="auto" [closeOnMouseOutside]="true">
+  <sc-calendar-hover-popup [event]="hoverPopupEvent"></sc-calendar-hover-popup>
+</popover-content>
+<sc-calendar-context-menu
+  [event]="menuEvent?.raw"
+  [content]="contextMenuContent"
+  (onLoadMenu)="contextMenu = $event">
+</sc-calendar-context-menu>

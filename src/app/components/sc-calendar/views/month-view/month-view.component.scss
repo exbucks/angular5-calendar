@@ -1,0 +1,58 @@
+$cell__border-color: #efefef;
+$grey__text-color: #ccc;
+$today__background-color: #fcf8e3;
+
+.month {
+  .day-names {
+    border-right: 1px solid $cell__border-color;
+    > div {
+      text-align: center;
+      border: 1px solid $cell__border-color;
+      border-right: 0;
+      border-bottom: 0;
+      padding: 10px 0;
+    }
+  }
+  .days {
+    border-right: 1px solid $cell__border-color;
+    border-bottom: 1px solid $cell__border-color;
+    .day-row {
+      position: relative;
+      .row-content {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 25px;
+        bottom: 0;
+        z-index: 2;
+        .event {
+          position: absolute;
+          height: 20px;
+          box-sizing: border-box;
+          line-height: 20px;
+        }
+      }
+      .day {
+        border: 1px solid $cell__border-color;
+        border-right: 0;
+        border-bottom: 0;
+        position: relative;
+        height: 100%;
+        .date-badge {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          font-size: 14px;
+          font-weight: 100;
+          z-index: 1;
+          &.inactive {
+            color: $grey__text-color;
+          }
+        }
+        &.today {
+          background-color: $today__background-color;
+        }
+      }
+    }
+  }
+}

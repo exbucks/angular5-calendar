@@ -1,0 +1,32 @@
+.mat-menu-panel {
+  button.mat-menu-item {
+    font-size: 13px;
+    letter-spacing: 0.8px;
+    height: 35px;
+    line-height: 35px;
+    mat-icon {
+      font-size: 22px;
+    }
+  }
+  .mat-divider {
+    display: block;
+    margin: 0;
+    border-top-width: 1px;
+    border-top-style: solid;
+  }
+}
+.popover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1060;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: visibility 0.7s, opacity 0.7s, transform 0.7s;
+  &.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
